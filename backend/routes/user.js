@@ -1,10 +1,10 @@
-const { getUser, getAll, updateUser, deleteUser,unfollowUser,followUser,getUserFriends } 
+const { getUser, getAllUsers, updateUser, deleteUser,unfollowUser,followUser,getUserFriends } 
 = require('../controllers/userController')
 const verifyToken = require('../middlewares/auth')
 
 const userRouter = require('express').Router()
 
-userRouter.get('/findAll', getAll)
+userRouter.get('/findAll', getAllUsers)
 userRouter.get('/find/:id', getUser)
 userRouter.get('/find/userfriends/:id', getUserFriends)
 

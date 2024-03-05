@@ -5,27 +5,31 @@ const bcrypt = require("bcrypt");
 
 
 //to see all users
-const getAll = async (req, res) => {
-  try {
-    const users = await User.find({}).select("-password");
+// const getAlluser = async (req, res) => {
+//   try {
+//     const users = await User.find({}).select("-password");
    
-      return res.status(200).json(users);
+//       return res.status(200).json(users);
     
+//   } catch (error) {
+//     return res.status(500).json(error.message);
+//   }
+// };
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, 'username'); // Fetch only necessary fields
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: "Users Not Found" });
+    }
+    res.status(200).json({ users: users });
   } catch (error) {
-    return res.status(500).json(error.message);
+    res.status(500).json({ error: error.message });
+    console.log("Error in finding all users: ", error.message);
   }
 };
 
-// const allUsers = async (req, res) => {
-//   try {
-//       const users = User.find()
-//       if(!users) return res.status(404).json({message:"Users Not Fount"})
-//       res.status(200).json({Users:users})
-//   } catch (error) {
-//       res.status(500).json({ error: error.message });
-//       console.log("Error in find all users: ", error.message);
-//   }
-// }
+
 
 
 
@@ -172,29 +176,62 @@ const updateUser = async (req, res) => {
     }
   };
   
+  // const getUserFriends = async (req, res) => {
+  //   try {
+  //     const user = await User.findById(req.params.id);
+  //     if (!user) {
+  //       throw new Error("User does not exists");
+  //     }
+  
+  //     const userFriends = await Promise.all(
+  //       user.followings.map((friendId) => {
+  //         return User.findById(friendId).select("-password");
+  //       })
+  //     );
+  
+  //     if (userFriends.length > 0) {
+  //       return res.status(200).json(userFriends);
+  //     } else {
+  //       throw new Error("You have no friends");
+  //     }
+  //   } catch (error) {
+  //     return res.status(500).json(error.message);
+  //   }
+  // };
+  
+
+
   const getUserFriends = async (req, res) => {
     try {
+      // Find the user by ID
       const user = await User.findById(req.params.id);
+      
       if (!user) {
-        throw new Error("User does not exists");
+        // If user is not found, return a 404 error
+        return res.status(404).json({ error: 'User not found' });
       }
   
-      const userFriends = await Promise.all(
-        user.followings.map((friendId) => {
-          return User.findById(friendId).select("-password");
-        })
-      );
+      // Retrieve user's friends
+      const userFriends = await User.find({ _id: { $in: user.followings } }).select('-password');
   
       if (userFriends.length > 0) {
+        // If user has friends, return them
         return res.status(200).json(userFriends);
       } else {
-        throw new Error("You have no friends");
+        // If user has no friends, return a message
+        return res.status(200).json({ message: 'You have no friends' });
       }
     } catch (error) {
-      return res.status(500).json(error.message);
+      // Handle any errors and return a 500 status code
+      return res.status(500).json({ error: error.message });
     }
   };
   
+  
+
+
+
+
   // Follow     
 
   
@@ -256,6 +293,6 @@ return res.status(200).json({msg:"you have successfully unfollowed the user"})
 }
 
 module.exports ={
-    getAll,unfollowUser,
+  getAllUsers,unfollowUser,
     getUser, getUserProfile,followUser,updateUser,deleteUser,getUserFriends
 }
