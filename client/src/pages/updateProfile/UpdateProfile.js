@@ -10,8 +10,8 @@ import axios from 'axios'
 
 const UpdateProfile = () => {
     const { user, token } = useSelector((state) => state.auth)
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState(user?.username)
+    const [email, setEmail] = useState(user?.email)
     const [profilePic, setProfilePic] = useState('')
     const [coverPic, setCoverPic] = useState('')
     const navigate = useNavigate()
@@ -79,6 +79,11 @@ const UpdateProfile = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
+
+
+        console.log("User:", user); // Log user object
+        console.log("User ID:", user ? user._id : "undefined"); // Log user ID
+    
     
         if (!user || !user._id) {
             console.error("User object or _id property is undefined.");

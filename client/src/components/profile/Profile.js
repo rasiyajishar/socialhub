@@ -108,7 +108,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import Post from "../post/Post";
 import axios from "axios";
 
@@ -211,9 +211,15 @@ const Profile = () => {
             )}
           </div>
 
+
+          <Link to={`/updateProfile/${id}`} className={classes.Updateprofile}>
+               
+               UpdateProfile
+             </Link>
+
           {user?._id === id && <Share />}
 
-<Share />
+
 
           <div className={classes.posts}>
             {userPosts?.reverse().map((post) => (

@@ -11,6 +11,7 @@ const ProfileDetails = () => {
         <Navbar />
         <main className={classes.main}>
         <Sidebar />
+        
           <Profile />
         </main>
       </div>

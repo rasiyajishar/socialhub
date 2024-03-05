@@ -19,7 +19,7 @@ function App() {
       <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/profile/:id' element={<ProfileDetails />} />
-<Route path='/updateprofile/:id' element={<UpdateProfile />} />
+<Route path='/updateProfile/:id' element={<UpdateProfile />} />
 
 <Route path='/auth' element={<Auth />} />
       </Routes>

@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const [showmodal, setShowmodal] = useState(false);
   const { user } = useSelector((state) => state.auth);
+  
   const navigate = useNavigate();
   const togglemodal = () => {
     setShowmodal(prev => !prev);
@@ -41,11 +42,11 @@ const Navbar = () => {
               <span onClick={handlelogout} className={classes.logout}>
                 logout
               </span>
-              {/* <Link to="/updateprofile/user?.id" className={classes.Updateprofile}>
+              {/* <Link to="/updateProfile/user?.id" className={classes.Updateprofile}>
                
                 UpdateProfile
               </Link> */}
-               <Link to={`/updateprofile/${user._id}`} className={classes.Updateprofile}>
+               <Link to={`/updateProfile/${user?._id}`} className={classes.Updateprofile}>
                
                UpdateProfile
              </Link>
