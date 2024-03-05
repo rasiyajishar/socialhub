@@ -1,0 +1,72 @@
+.container {
+  height: 60px;
+  width: 100%;
+}
+.container1 {
+  height: 100%;
+  width: 100%;
+  padding: 0.25rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1919de;
+}
+.left >a{
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 28px;
+  letter-spacing: 4px;
+  font-weight: bold;
+  font-style: italic;
+}
+.searchform {
+  display: flex;
+  align-items: center;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 0.5rem;
+  background-color: #fff;
+}
+.searchform > input {
+  border: none;
+  outline: none;
+  padding-left: 1.5rem;
+}
+.searchicon {
+  font-size: 20px;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.personimage {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+}
+.modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 75px;
+  top: 3rem;
+  right: 0.25rem;
+
+  height: 75px;
+  width: max-content;
+  gap: 1rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  box-shadow: 0px 5px 7px 9px rgba(0, 0, 0, 0.085);
+  background-color: #fff;
+}
+.Updateprofile {
+  text-decoration: none;
+  color: inherit;
+}
+.logout {
+  cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.container{
+  min-height: calc(100vh-60px);  
+  width:100%
+}
+
+.container1{
+ height: 100%;
+ width: 100%;   
+ flex-direction: column;
+ gap:3rem;
+ align-items: center;
+}
+.posts{
+display: flex;
+flex-direction: column;
+gap:5rem;
+width: 100%;
+}
